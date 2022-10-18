@@ -19,4 +19,11 @@ with open("./highscores.csv", 'r') as file:
     #rearranges order of numbers into ordered list
     ordered = sorted(scores)
     ordered.reverse()
-    print(ordered)
+    #print(ordered)
+
+    #creates window to display top 5 high scores
+    import tkinter as tk
+    window = tk.Tk()
+    greeting = tk.Label(text="Hello, Tkinter")
+    greeting.pack()
+    window.mainloop()
