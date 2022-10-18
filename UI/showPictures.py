@@ -73,7 +73,4 @@ previousGame = Button(root, text = "<<", command = lambda : previousGamef(2))
 nextGame.grid(row = 1, column = 3)
 previousGame.grid(row = 1, column = 0)
 
-
-
-
 root.mainloop()
