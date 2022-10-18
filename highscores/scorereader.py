@@ -24,7 +24,13 @@ with open("./highscores.csv", 'r') as file:
     #creates window to display top 5 high scores
     import tkinter as tk
     window = tk.Tk()
-    greeting = tk.Label(text=ordered)
+    window.title("High Scores")
 
-    greeting.pack()
+    for element in ordered:
+        for item in element:
+            items = item
+            #still needs to only read top 5, reads all for now
+            greeting = tk.Label(text=(item))
+            greeting.pack()
+
     window.mainloop()
