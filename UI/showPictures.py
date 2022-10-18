@@ -18,8 +18,8 @@ gameList = [gameImage1, gameImage2, gameImage3, gameImage4]
 nameList = ["Game1", "Game2", "Game3", "Game4"]
 showGame = Label(image = gameList[0])
 gameName = Label(text = nameList[0])
-gameName.grid(row = 0, column = 1, columnspan = 3, padx = X_PAD)
-showGame.grid(row = 1, column = 1, padx = X_PAD)
+gameName.grid(row = 0, column = 1, columnspan = 3, padx = X_PAD, pady = 25)
+showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
 
 #This function is to show the next game in the list
 def nextGamef(imagePos):
@@ -32,8 +32,8 @@ def nextGamef(imagePos):
     gameName.grid_forget()
     gameName = Label(text = nameList[imagePos - 1])
     showGame = Label(image = gameList[imagePos - 1])
-    showGame.grid(row = 1, column = 1, padx = X_PAD)
-    gameName.grid(row = 0, column = 1, padx = X_PAD)
+    showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
+    gameName.grid(row = 0, column = 1, padx = X_PAD, pady = 25)
     nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1))
     previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1))
     #The next button is disabled if we are at the end of the list
@@ -54,8 +54,8 @@ def previousGamef(imagePos):
     gameName.grid_forget()
     showGame = Label(image = gameList[imagePos - 1])
     gameName = Label(text = nameList[imagePos - 1])
-    showGame.grid(row = 1, column = 1, padx = X_PAD)
-    gameName.grid(row = 0, column = 1, padx = X_PAD)
+    showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
+    gameName.grid(row = 0, column = 1, padx = X_PAD, pady = 25)
     nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1))
     previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1))
     #The previous button is disabled if we are at the beginning of the list
@@ -70,6 +70,8 @@ nextGame = Button(root, text = ">>", command=lambda : nextGamef(2))
 previousGame = Button(root, text = "<<", command = lambda : previousGamef(2))
 nextGame.grid(row = 1, column = 3)
 previousGame.grid(row = 1, column = 0)
+
+
 
 
 root.mainloop()
