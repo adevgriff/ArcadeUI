@@ -5,40 +5,34 @@ import csv
 class HighScore:
 
     #takes in the input for the class
-    def __init__(self, listSize):
-        #stores int for number of top scores displayed
-        self.listSize = listSize
+    def __init__(self, fileName):
 
-    #opens the high scores file
-    with open("./highscores.csv", 'r') as file:
-        #creates lists
-        scores = []
-        ordered = []
+        #opens the high scores file
+        with open(fileName, 'r') as file:
+            #creates lists
+            self.scores = []
 
-        #reads through each line in the file
-        csv_reader = csv.reader(file)
-        for row in csv_reader:
-            #places row number input into scores list
-            nums = row
-            #converts the row input into ints
-            nums = [int(x) for x in nums]
-            scores.append(nums)
+            #reads through each line in the file
+            csv_reader = csv.reader(file)
+            for row in csv_reader:
+                #places row number input into scores list
+                nums = row
+                #converts the row input into ints
+                nums = [int(x) for x in nums]
+                self.scores.append(nums)
 
-        #rearranges order of numbers into ordered list
-        ordered = sorted(scores)
-        ordered.reverse()
-        #print(ordered)
+            #rearranges order of numbers into ordered list
+            self.scores.sort()
+            self.scores.reverse()
 
-        #creates window to display top 5 high scores
-        import tkinter as tk
-        window = tk.Tk()
-        window.title("High Scores")
+    def getList(self):
+        #prints the list in range
+        for i in range(5):
+            print(self.scores[i])
 
-        for element in ordered:
-            for item in element:
-                items = item
-                #reads the scores onto a window
-                greeting = tk.Label(text=(item))
-                greeting.pack()
+def doStuff():
+    high = HighScore("highscores.csv")
+    high.getList()
+    return
 
-        window.mainloop()
+doStuff()
