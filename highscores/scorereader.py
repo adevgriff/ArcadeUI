@@ -32,9 +32,31 @@ class HighScore:
         for i in range(self.num):
             print(self.scores[i])
 
+    #give(# of items, # of those items that are on the top, # index of rest of numbers)
+    def give(self, items, top, index):
+        #initializes count variable
+        count = 0
+        #generates new lists
+        topn = []
+        vertop = []
+
+        #appends new list of top n numbers
+        for i in range(items):
+           topn.append(self.scores[i])
+        print(topn)
+
+        #gets top n items of topn list
+        for i in range(top):
+            vertop.append(topn[i])
+
+        #gets the index of the rest of the items
+        for i in range(index,items):
+            print(topn[i])
+
 def doStuff():
     high = HighScore("highscores.csv", 7)
     high.getList()
+    high.give(10,3,5)
     return
 
 doStuff()
