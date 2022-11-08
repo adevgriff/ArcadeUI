@@ -3,9 +3,11 @@ import csv
 
 #initializes the high score class
 class HighScore:
+    num=0
 
     #takes in the input for the class
-    def __init__(self, fileName):
+    def __init__(self, fileName, ninput):
+        self.num = ninput
 
         #opens the high scores file
         with open(fileName, 'r') as file:
@@ -27,11 +29,11 @@ class HighScore:
 
     def getList(self):
         #prints the list in range
-        for i in range(5):
+        for i in range(self.num):
             print(self.scores[i])
 
 def doStuff():
-    high = HighScore("highscores.csv")
+    high = HighScore("highscores.csv", 7)
     high.getList()
     return
 
