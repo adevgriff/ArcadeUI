@@ -39,24 +39,34 @@ class HighScore:
         #generates new lists
         topn = []
         vertop = []
+        rest = []
 
         #appends new list of top n numbers
         for i in range(items):
-           topn.append(self.scores[i])
-        print(topn)
+            topn.append(self.scores[i])
+            #print(topn)
 
         #gets top n items of topn list
         for i in range(top):
             vertop.append(topn[i])
+            #print(vertop[i])
 
         #gets the index of the rest of the items
         for i in range(index,items):
-            print(topn[i])
+            rest.append(topn[i])
+            #print(topn[i])
+
+        return topn, vertop, rest
 
 def doStuff():
     high = HighScore("highscores.csv", 7)
-    high.getList()
-    high.give(10,3,5)
-    return
+    #high.getList()
+    topl = []
+    toptop = []
+    resttop = []
+
+    topl, toptop, resttop = high.give(10,3,5)
+    print(topl, toptop, resttop)
+    return 0
 
 doStuff()
