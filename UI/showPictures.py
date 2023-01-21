@@ -12,10 +12,10 @@ fontStyle = tkFont.Font(family="Lucida Console", size=25, underline = True, weig
 
 #Get the games from the gamedev team and store them in a list
 #Show the first game using a grid
-gameImage1 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game1.jpg"))
-gameImage2 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game2.jpg"))
-gameImage3 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game3.jpg"))
-gameImage4 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game4.jpg"))
+gameImage1 = ImageTk.PhotoImage(Image.open("GameImages/game1.jpg"))
+gameImage2 = ImageTk.PhotoImage(Image.open("GameImages/game2.jpg"))
+gameImage3 = ImageTk.PhotoImage(Image.open("GameImages/game3.jpg"))
+gameImage4 = ImageTk.PhotoImage(Image.open("GameImages/game4.jpg"))
 gameList = [gameImage1, gameImage2, gameImage3, gameImage4]
 nameList = ["Game1", "Game2", "Game3", "Game4"]
 showGame = Label(image = gameList[0])
