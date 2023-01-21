@@ -2,8 +2,23 @@ from tkinter import *
 from PIL import ImageTk, Image
 import tkinter.font as tkFont
 from game import Game
+from inputs import get_gamepad
 
-X_PAD = 375
+X_PAD = 75
+TEXT_WIDTH = 400
+TEXT_HEIGHT = 800
+
+
+def processingInputs(root, gameList, currentGame, imageLabel, nameLabel):
+    events = get_gamepad()
+    for event in events:
+        print(event.code, " , ", event.state)
+        if event.code == "ABS_X" and event.state == 255:
+            prevGame(gameList, currentGame, imageLabel, nameLabel)
+
+    root.after(200, lambda: processingInputs(root, gameList, currentGame,
+               imageLabel, nameLabel))
+    return
 
 
 def start():
@@ -15,13 +30,14 @@ def start():
     fontStyle = tkFont.Font(family="Lucida Console",
                             size=25, underline=True, weight=tkFont.BOLD)
 
+    # Joystick
+
     # bind keys
 
     # open games.csv
     gamesFile = open("games.csv", 'r')
 
     gameList = []
-
     for line in gamesFile:
         properties = line.split(',')
         if (len(properties) > 3):
@@ -34,8 +50,12 @@ def start():
     gameImageLabel = Label(image=gameList[currentGame[0]].image)
     gameNameLabel = Label(text=gameList[currentGame[0]].name)
 
-    gameNameLabel.grid(row=0, column=1, columnspan=3, padx=X_PAD, pady=25)
-    gameImageLabel.grid(row=1, column=1, padx=X_PAD, pady=50)
+    gameNameLabel.grid(row=0, column=1, columnspan=4, padx=X_PAD, pady=25)
+    gameImageLabel.grid(row=1, column=2, padx=0, pady=50)
+
+    gameScoreLabel = Label(text="*************HIGHSCORES*************")
+
+    gameScoreLabel.grid(row=1, column=1, padx=0, pady=50, sticky='N')
 
     nextButton = Button(root, text=">>", command=lambda: nextGame(
         gameList, currentGame, gameImageLabel, gameNameLabel))
@@ -45,6 +65,9 @@ def start():
 
     nextButton.grid(row=1, column=3)
     prevButton.grid(row=1, column=0)
+
+    root.after(0, lambda: processingInputs(root, gameList, currentGame,
+               gameImageLabel, gameNameLabel))
 
     root.mainloop()
 
