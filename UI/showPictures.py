@@ -12,48 +12,59 @@ gameImage3 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game3.jpg"))
 gameImage4 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game4.jpg"))
 gameList = [gameImage1, gameImage2, gameImage3, gameImage4]
 showGame = Label(image = gameList[0])
-showGame.grid(row = 0, column = 1)
+gameName = Label(text = gameList[0])
+gameName.grid(row = 0, column = 1, columnspan = 3)
+showGame.grid(row = 1, column = 1)
 
 #This function is to show the next game in the list
 def nextGamef(imagePos):
     global showGame
     global nextGame
     global previousGame
+    global gameName
 
     showGame.grid_forget()
+    gameName.grid_forget()
+    gameName = Label(text = gameList[imagePos - 1])
     showGame = Label(image = gameList[imagePos - 1])
-    showGame.grid(row = 0, column = 1)
+    showGame.grid(row = 1, column = 1)
+    gameName.grid(row = 0, column = 1)
     nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1))
     previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1))
     #The next button is disabled if we are at the end of the list
     if imagePos == len(gameList):
         nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1), state = DISABLED)
         
-    nextGame.grid(row = 0, column = 3)
-    previousGame.grid(row = 0, column = 0)
+    nextGame.grid(row = 1, column = 3)
+    previousGame.grid(row = 1, column = 0)
     
 #This function is to show the previous game in the list
 def previousGamef(imagePos):
     global showGame
     global nextGame
     global previousGame
+    global gameName
+
     showGame.grid_forget()
+    gameName.grid_forget()
     showGame = Label(image = gameList[imagePos - 1])
-    showGame.grid(row = 0, column = 1)
+    gameName = Label(text = gameList[imagePos - 1])
+    showGame.grid(row = 1, column = 1)
+    gameName.grid(row = 0, column = 1)
     nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1))
     previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1))
     #The previous button is disabled if we are at the beginning of the list
     if imagePos == 0:
          previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1), state = DISABLED)
         
-    nextGame.grid(row = 0, column = 3)
-    previousGame.grid(row = 0, column = 0)
+    nextGame.grid(row = 1, column = 3)
+    previousGame.grid(row = 1, column = 0)
     
 #Shows the default buttons
 nextGame = Button(root, text = ">>", command=lambda : nextGamef(2))
 previousGame = Button(root, text = "<<", command = lambda : previousGamef(2))
-nextGame.grid(row = 0, column = 3)
-previousGame.grid(row = 0, column = 0)
+nextGame.grid(row = 1, column = 3)
+previousGame.grid(row = 1, column = 0)
 
 
 root.mainloop()
