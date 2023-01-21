@@ -12,7 +12,6 @@ TEXT_HEIGHT = 800
 def processingInputs(root, gameList, currentGame, imageLabel, nameLabel):
     events = get_gamepad()
     for event in events:
-        print(event.code, " , ", event.state)
         if event.code == "ABS_X" and event.state == 255:
             prevGame(gameList, currentGame, imageLabel, nameLabel)
 
