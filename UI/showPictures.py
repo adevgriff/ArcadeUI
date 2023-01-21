@@ -1,12 +1,14 @@
 from tkinter import *
 from PIL import ImageTk, Image
-
-X_PAD = 375
+import tkinter.font as tkFont
 
 root = Tk()
 root.title("SUNY Poly Arcade")
 root.geometry("1280x1024")
 root.configure(bg = 'grey')
+
+X_PAD = 375
+fontStyle = tkFont.Font(family="Lucida Grande", size=20)
 
 #Get the games from the gamedev team and store them in a list
 #Show the first game using a grid
@@ -17,7 +19,7 @@ gameImage4 = ImageTk.PhotoImage(Image.open("UI\\GameImages\\game4.jpg"))
 gameList = [gameImage1, gameImage2, gameImage3, gameImage4]
 nameList = ["Game1", "Game2", "Game3", "Game4"]
 showGame = Label(image = gameList[0])
-gameName = Label(text = nameList[0])
+gameName = Label(text = nameList[0], font = fontStyle)
 gameName.grid(row = 0, column = 1, columnspan = 3, padx = X_PAD, pady = 25)
 showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
 
@@ -30,7 +32,7 @@ def nextGamef(imagePos):
 
     showGame.grid_forget()
     gameName.grid_forget()
-    gameName = Label(text = nameList[imagePos - 1])
+    gameName = Label(text = nameList[imagePos - 1], font = fontStyle)
     showGame = Label(image = gameList[imagePos - 1])
     showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
     gameName.grid(row = 0, column = 1, padx = X_PAD, pady = 25)
@@ -52,14 +54,14 @@ def previousGamef(imagePos):
 
     showGame.grid_forget()
     gameName.grid_forget()
+    gameName = Label(text = nameList[imagePos - 1], font = fontStyle)
     showGame = Label(image = gameList[imagePos - 1])
-    gameName = Label(text = nameList[imagePos - 1])
     showGame.grid(row = 1, column = 1, padx = X_PAD, pady = 50)
     gameName.grid(row = 0, column = 1, padx = X_PAD, pady = 25)
     nextGame = Button(root, text = ">>", command=lambda : nextGamef(imagePos + 1))
     previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1))
     #The previous button is disabled if we are at the beginning of the list
-    if imagePos == 0:
+    if imagePos == 1:
          previousGame = Button(root, text = "<<", command = lambda : previousGamef(imagePos - 1), state = DISABLED)
         
     nextGame.grid(row = 1, column = 3)
